@@ -1,5 +1,5 @@
 const BASE_URL = "https://smartphoniker.osc-fr1.scalingo.io/api"
-const CHECK_INTERVAL = 5000;
+const CHECK_INTERVAL = 60000; // one minute
 const counters = document.querySelectorAll('.counter');
 const speed = 350; // The higher the slower
 
@@ -23,6 +23,7 @@ function spin() {
             const count = +counter.innerText;
 
             // Lower inc to slow and higher to slow
+            // Also round inc to keep integers and not floats
             const inc = Math.ceil(target / speed);
 
             // Check if target is reached
@@ -35,6 +36,7 @@ function spin() {
                 counter.innerText = target;
             }
         };
+        // Reset counter to show the full animation again
         counter.innerText = 0;
         updateCount();
     });
